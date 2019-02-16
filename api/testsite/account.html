@@ -13,8 +13,10 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="register.html">Register</a></li>
             <li><a href="login.html">Login</a></li>
-            <li><a href="account.html"></a></li>
+            <li><a href="account.html">Account</a></li>
         </ul>
+
+        <button id='btn-logout'>Logout</button>
     </nav>
     
 </body>
@@ -27,8 +29,28 @@
     
     postRequest('/account', cookies, res=> {
         console.log(res)
+        if (!res.success) {
+            window.location.assign('login.html')
+        }
     });
+</script>
 
+<script>
+    function logout(e) {
+        cookies = parse_cookies(document.cookie);
+        route = '/logout';
+        postRequest(route, cookies, res => {
+            if (res.success) {
+                document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                document.cookie = 'id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                console.log(parse_cookies(document.cookie))
+                window.location.assign('login.html')
+            }
+        });
+    }
+
+    logout_btn = document.getElementById('btn-logout');
+    logout_btn.addEventListener('click', logout)
 </script>
 
 </html>

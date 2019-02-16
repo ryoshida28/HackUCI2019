@@ -14,9 +14,9 @@ api = Api(app)
 
 
 api.add_resource(Register, '/register')
-# api.add_resource(Login, '/login')
+api.add_resource(Login, '/login')
 api.add_resource(GetAccount, '/account')
-# api.add_resource(Logout, '/logout')
+api.add_resource(Logout, '/logout')
 
 if __name__ == '__main__':
     app.run(debug=True)

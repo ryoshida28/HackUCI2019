@@ -47,7 +47,23 @@ class Register(Resource):
         return res.getResponse()
 
 class Login(Resource):
-    pass
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('email', type=str, required=True)
+        self.parser.add_argument('password', type=str, required=True)
+    
+    def post(self):
+        args = self.parser.parse_args()
+        res = Response()
+        print(args)
+        a = db.authenticate(args['email'], args['password'])
+        if not a:
+            res.setSuccess(False)
+            res.addErrorMessage('Invalid Credentials.')
+            return res.getResponse()
+        else:
+            res.setResponseObj(a)
+            return res.getResponse()
 
 class GetAccount(Resource):
     def __init__(self):
@@ -60,14 +76,27 @@ class GetAccount(Resource):
 
         # Verify Token
         a = db.verifyToken(args['id'], args['token'])
-        if a == None:
+        if a == None or a==False:
             res.setSuccess(False)
             res.addErrorMessage('Not logged in.')
             return res.getResponse()
         else:
-            print(a.getDict())
             res.setResponseObj(a)
             return res.getResponse()
 
 class Logout(Resource):
-    pass
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('id', type=int, required=True)
+        self.parser.add_argument('token', type=str)
+    
+    def post(self):
+        args = self.parser.parse_args()
+        res = Response()
+
+        if db.removeToken(args['id'], args['token']):
+            return res.getResponse()
+        else:
+            res.setSuccess(False)
+            res.addErrorMessage('Token not found')
+            return res.getResponse()
