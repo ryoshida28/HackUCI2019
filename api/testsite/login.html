@@ -14,7 +14,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="register.html">Register</a></li>
                 <li><a href="login.html">Login</a></li>
-                <li><a href="account.html"></a></li>
+                <li><a href="account.html">Account</a></li>
             </ul>
         </nav>
     <form id="form-login">
@@ -35,13 +35,18 @@
     // Event Listeners
     function submitLogin(e) {
         e.preventDefault();
-
-        route = '/login'
+        route = '/login';
         params = {
-            email: lgn_form_inp[0],
-            password: lgn_form_inp[1]
-        }
-        postRequest(route, params, res => console.log(res))
+            email: lgn_form_inp[0].value,
+            password: lgn_form_inp[1].value
+        };
+        postRequest(route, params, res => {
+            if (res.success) {
+                document.cookie = 'token='+res.object.tokens[0].token+'; path=/';
+                document.cookie = 'id='+res.object.id+'; path=/';
+                window.location.assign('account.html')
+            }
+        });
     }
 
 

@@ -54,9 +54,9 @@
         };
         postRequest(route, params, res => {
             if (res.success) {
-                document.cookie = 'token='+res.object.tokens[0].token+';';
-                document.cookie = 'id='+res.object.id+';';
-                window.location('account.html')
+                document.cookie = 'token='+res.object.tokens[0].token+'; path=/;';
+                document.cookie = 'id='+res.object.id+'; path=/;';
+                window.location.assign('account.html')
             }
         });
     }

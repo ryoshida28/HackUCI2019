@@ -66,3 +66,50 @@ def verifyToken(id, token):
             if token in (token['token'] for token in acct.tokens):
                 return acct
             return False
+
+def authenticate(email, password):
+    db = None
+    
+    with open(os.path.join('db', 'accounts.json'), 'r') as fp:
+        db = json.load(fp)
+    if db == None:
+        return False
+    else:
+        for account in db['authorization']:
+            if account['email'] == email and sha256_crypt.verify(password, account['password']):
+                
+                token = generateToken()
+                for i in range(len(db['accounts'])):
+                    if db['accounts'][i]['id'] == account['id']:
+                        db['accounts'][i]['tokens'].append({'token': token[0], 'expires': str(token[1])})
+                with open(os.path.join('db', 'accounts.json'), 'w') as fp:
+                    json.dump(db, fp)
+                return getAccountByID(account['id'], db)
+            else:
+                break
+        return False
+
+def removeToken(id, token):
+    db = None
+
+    with open(os.path.join('db', 'accounts.json'), 'r') as fp:
+        db = json.load(fp)
+    
+    if db == None:
+        return False
+    else:
+        found_token = False
+        for i in range(len(db['accounts'])):
+            print(db['accounts'][i]['id'], id)
+            if db['accounts'][i]['id'] == id:
+                for j in range(len(db['accounts'][i]['tokens'])):
+                    print(id, db['accounts'][i]['tokens'][j]['token'], token)
+                    if db['accounts'][i]['tokens'][j]['token'] == token:
+                        del db['accounts'][i]['tokens'][j]
+                        found_token = True
+                        break
+    
+    with open(os.path.join('db', 'accounts.json'), 'w') as fp:
+        json.dump(db, fp)
+
+    return found_token
