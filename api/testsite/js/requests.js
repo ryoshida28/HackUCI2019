@@ -67,3 +67,15 @@ function getRequest(route, params, handleRes) {
         .then(response => response.json())
         .then(responseJSON => handleRes(responseJSON))
 }
+
+function parse_cookies(str) {
+    str = str.split('; ');
+    var result = {};
+    for (var i = 0; i < str.length; i++) {
+        var cur = str[i].split('=');
+        if (cur[0] == 'id' || cur[0] == 'token') {
+            result[cur[0]] = cur[1];
+        }
+    }
+    return result;
+}

@@ -18,7 +18,6 @@ class Response:
         self._invalid_items = []
         self._err_messages = []
         self._dictable = None
-        self._session_info = {'token':'', 'id':0}
     
     def isSuccess(self):
         return self._success
@@ -32,10 +31,6 @@ class Response:
     def setSuccess(self, success: bool):
         """ Sets whether the response should return a success or error."""
         self._success = success
-
-    def setSession(self, token, id):
-        self._session_info['token'] = token
-        self._session_info['id'] = id
 
     def setResponseObj(self, o):
         """ Expects o to an instance of Dictable."""
@@ -62,8 +57,7 @@ class Response:
         res = {
             'success': self._success,
             'invalid_items': self._invalid_items,
-            'error_messages': self._err_messages,
-            'session_info': self._session_info
+            'error_messages': self._err_messages
         }
 
         if self._dictable != None and isinstance(self._dictable, Dictable):

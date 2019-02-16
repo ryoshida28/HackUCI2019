@@ -1,4 +1,5 @@
 # This file will have a list of pip imports to be able to run server and the api
 pip install flask
-pip install flask-sqlalchemy        # For interacting with database with an ORM model
-pip install Flask-Migrate           # for database migrations (updating the database structure)
+pip install flask-restful
+pip install -U flask-cors
+pip install passlib

@@ -3,17 +3,32 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
+    <title>Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <h1>Home</h1>
+    <h1>Account</h1>
     <nav>
         <ul>
+            <li><a href="index.html">Home</a></li>
             <li><a href="register.html">Register</a></li>
             <li><a href="login.html">Login</a></li>
             <li><a href="account.html"></a></li>
         </ul>
     </nav>
+    
 </body>
+
+<script src="js/requests.js"></script>
+<script>
+    console.log(document.cookie)
+    cookies = parse_cookies(document.cookie);
+    console.log(cookies)
+    
+    postRequest('/account', cookies, res=> {
+        console.log(res)
+    });
+
+</script>
+
 </html>

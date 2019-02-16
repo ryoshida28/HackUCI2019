@@ -9,12 +9,13 @@
 <body>
     <h1>Register</h1>
     <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="account.html">Account</a></li>
+        </ul>
+    </nav>
     <form id='form-register'>
         <input type="text" name="first_name" id="input-first_name" placeholder="First Name">
         <br><br>
@@ -44,14 +45,20 @@
 
         route = '/register'
         params = {
-            first_name: reg_form_inp[0],
-            last_name: reg_form_inp[1],
-            email: reg_form_inp[2],
-            birthdate: reg_form_inp[3],
-            password: reg_form_inp[4],
-            confirm_password: reg_form_inp[5]
-        }
-        postRequest(route, params, res => console.log(res))
+            first_name: reg_form_inp[0].value,
+            last_name: reg_form_inp[1].value,
+            email: reg_form_inp[2].value,
+            birthdate: reg_form_inp[3].value,
+            password: reg_form_inp[4].value,
+            confirm_password: reg_form_inp[5].value
+        };
+        postRequest(route, params, res => {
+            if (res.success) {
+                document.cookie = 'token='+res.object.tokens[0].token+';';
+                document.cookie = 'id='+res.object.id+';';
+                window.location('account.html')
+            }
+        });
     }
 
     // Add EventListeners
