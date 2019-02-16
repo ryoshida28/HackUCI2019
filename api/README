@@ -1,0 +1,7 @@
+Backend API
+- This folder will be used for designing and testing the backend api for the application.
+
+The Test Site
+- /testsite will hold a test html website that we can run tests on the backend with.
+    - Add styling if desired but not necessary
+- /testsite/js will hold the js files used by the Test Site.

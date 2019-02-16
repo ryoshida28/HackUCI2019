@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Register</h1>
+    <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    <form id='form-register'>
+        <input type="text" name="first_name" id="input-first_name" placeholder="First Name">
+        <br><br>
+        <input type="text" name="last_name" id="input-last_name" placeholder="Last Name">
+        <br><br>
+        <input type="text" name="email" id="input-email" placeholder="Email">
+        <br><br>
+        <input type="date" name="birthdate" id="input-birthdate">
+        <br><br>
+        <input type="password" name="password" id="input-password" placeholder="Password">
+        <br><br>
+        <input type="password" name="confirm_password" id="input-confirm_password" placeholder="Confirm Password">
+        <br><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+
+<script src="js/requests.js"></script>
+<script>
+    reg_form = document.getElementById('form-register');    // This is the login form
+    reg_form_inp = document.querySelectorAll('#form-register input')
+
+
+    // Event Listeners
+    function submitRegister(e) {
+        e.preventDefault();
+
+        route = '/register'
+        params = {
+            first_name: lgn_form_inp[0],
+            last_name: lgn_form_inp[1],
+            email: lgn_form_inp[2],
+            birthdate: lgn_form_inp[3],
+            password: lgn_form_inp[4],
+            confirm_password: lgn_form_inp[5]
+        }
+        postRequest(route, params, res => console.log(res))
+    }
+
+    // Add EventListeners
+    reg_form.addEventListener('submit', submitRegister);
+</script>
+
+</html>

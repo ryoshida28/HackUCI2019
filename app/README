@@ -1,0 +1,6 @@
+Frontend Application
+- This folder will be used for designing and testing of the frontend application.
+- Add any additional notes as necessary
+
+AJAX - Connecting with the API
+- /js/requests.js will contain functions that can be used for easily making requests to the API.
