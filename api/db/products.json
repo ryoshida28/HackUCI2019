@@ -1,0 +1,16 @@
+{
+    "products":[
+        {
+            "id": 1,
+            "account_id": 1,
+            "name": "Lorem",
+            "images":[],
+            "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis id tellus nec vehicula. Aliquam vitae ullamcorper nulla. Ut fringilla sapien quis magna congue tempor. Nam sed lorem nisl. Donec sit amet pretium justo. Vivamus suscipit ex quis nibh rhoncus, a blandit lorem molestie. Donec non est gravida massa lacinia ultrices. Etiam non felis id nibh condimentum blandit id sed turpis. In hac habitasse platea dictumst. In quis finibus lectus. ",
+            "min_price": 100,
+            "max_price": 200,
+            "tags": ["cool stuff", "stuff", "cool"]
+        }
+    ],
+
+    "last_insert_id": 1
+}

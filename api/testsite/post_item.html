@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Post Item</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Post Item</h1>
+    <hr>
+    <form id='form-post_item'>
+        <label for="input-item_name">Item Name</label>
+        <br><br>
+        <input type="text" name="input-item_name" id="input-item_name">
+        <br><br>
+        <label for="image-0">Upload Image</label>
+        <div id="image-upload-container" style="border: 1px; border-style:solid; padding:1em; margin: 1em;">
+            <div id="inputs">
+                <input class="image_inp" type="file" name="image-0" id="image-0" accept="image/*">
+                <br><br>
+            </div>
+            <button id='btn-add_more'>Add More</button>
+        </div>
+        <div id="categories-container" style="border: 1px; border-style:solid; padding:1em; margin: 1em;">
+            <label for="category-add">Add Categories</label>
+            <input type="text" name="cateogy-add" id="category-add">
+            <button id="btn-add_category">Add</button>
+            <ul id="list-categories"></ul>
+        </div>
+        <br>
+        <label for="input-description">Description</label>
+        <br><br>
+        <textarea name="input-description" id="input-description"></textarea>
+        <br><br>
+        <label for="input-min_price">Minimum Price</label>
+        <br><br>
+        <input type="number" name="input-min_price" id="input-min_price" min="0">
+        <br><br>
+        <label for="input-max_price">Maximum Price</label>
+        <br><br>
+        <input type="number" name="input-max_price" id="input-max_price" min="0">
+        <br><br>
+        <input type="submit" value="Post">
+    </form>
+</body>
+
+<script src="js/requests.js"></script>
+<script>
+    // Determine redirect
+    cookies = parse_cookies(document.cookie);
+    console.log(cookies);
+    
+    postRequest('/account', cookies, res=> {
+        console.log(res);
+        if (!res.success) {
+            window.location.assign('login.html');
+        }
+    });
+
+    // Get DOM items
+    post_form = document.getElementById('form-post_item');
+    btn_add_more_imgs = document.getElementById('btn-add_more');
+    div_file_inputs = document.getElementById('inputs');
+    btn_add_cateogory = document.getElementById('btn-add_category');
+    div_categories = document.getElementById('categories-container');
+
+
+    // Event Listeners
+    function addMoreImages(e) {
+        btn = e.target;
+        // Create new node
+        newImgInp = document.createElement('input');
+        newImgInp.setAttribute('type','file');
+        newImgInp.setAttribute('accept', 'image/*');
+        newImgInp.className = 'image_inp';
+
+        // Get last file add
+        file_inps = document.querySelectorAll('#image-upload-container input');
+        last_item = file_inps[file_inps.length-1];
+        newImgInp.id = 'image-'+ (parseInt(last_item.id.substring(last_item.id.length-1))+1);
+        newImgInp.setAttribute('name', newImgInp.id)
+
+        div_file_inputs.appendChild(newImgInp)
+        div_file_inputs.appendChild(document.createElement('br'))
+        div_file_inputs.appendChild(document.createElement('br'))
+    }
+
+    function addCategory(e) {
+        category = document.getElementById('category-add').value;
+        li = document.createElement('li');
+        li.appendChild(document.createTextNode(category));
+        ul = document.getElementById('list-categories');
+        ul.appendChild(li);
+    }
+
+    function postItem(e) {
+        e.preventDefault();
+
+        name = document.getElementById('input-item_name').value;
+        files = [];
+        inputs = document.getElementsByClassName('image_inp');
+        for (i = 0; i < inputs.length; i++) {
+            if (inputs[i].files.length == 1) {
+                files.push(inputs[i].files[0]);
+            }
+        }
+
+        categoriesList = document.querySelectorAll('#list-categories li');
+
+
+        description = document.getElementById('input-description').value;
+        min_price = document.getElementById('input-min_price').value;
+        max_price = document.getElementById('input-max_price').value;
+
+        params = {
+            name: name,
+            categories: Array.from(categoriesList),
+            description: description,
+            min_price: min_price,
+            max_price: max_price,
+            files: files
+        };
+        console.log(params);
+    }
+
+
+
+    btn_add_more_imgs.addEventListener('click', addMoreImages);
+    btn_add_cateogory.addEventListener('click', addCategory);
+    post_form.addEventListener('submit', postItem)
+
+</script>
+</html>
