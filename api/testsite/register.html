@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
 </head>
 <body>
     <h1>Register</h1>
@@ -46,12 +44,12 @@
 
         route = '/register'
         params = {
-            first_name: lgn_form_inp[0],
-            last_name: lgn_form_inp[1],
-            email: lgn_form_inp[2],
-            birthdate: lgn_form_inp[3],
-            password: lgn_form_inp[4],
-            confirm_password: lgn_form_inp[5]
+            first_name: reg_form_inp[0],
+            last_name: reg_form_inp[1],
+            email: reg_form_inp[2],
+            birthdate: reg_form_inp[3],
+            password: reg_form_inp[4],
+            confirm_password: reg_form_inp[5]
         }
         postRequest(route, params, res => console.log(res))
     }

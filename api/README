@@ -1,6 +1,9 @@
 Backend API
 - This folder will be used for designing and testing the backend api for the application.
 
+Database
+- Will use an SQLite database
+
 The Test Site
 - /testsite will hold a test html website that we can run tests on the backend with.
     - Add styling if desired but not necessary
