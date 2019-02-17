@@ -33,7 +33,7 @@
         <p class="lead">Swipe your way to what you need</p>
         <hr class="my-4">
         <p>For quick and easy buying and selling</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <a class="btn btn-primary btn-lg" href="site.html" role="button">Get Started</a>
     </div>
 
     <div class="bd-example" style="width:40%; height:40%; margin: auto;">
@@ -41,13 +41,6 @@
             <ol class="carousel-indicators" id="carousel_indicator">
             </ol>
             <div id="carousel-inner" class="carousel-inner" style="margin: auto;">
-                <div class="carousel-item active">
-                    <img src="/app/pictures/img.jpg" class="d-block w-100" style="margin:auto; display: block; width:400px; height: 400px;" alt="">
-                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.9);">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -74,12 +67,17 @@
   <script src="js/components.js"></script>
   <script>
   
-    function addCarouselItem(img_path, name, descr, index) {
+    function addCarouselItem(img_path, name, descr, index, active) {
         carousel_inner = document.getElementById('carousel-inner');
         carousel_ind = document.getElementById('carousel_indicator');
 
         carousel_item = document.createElement('div');
-        carousel_item.className = 'carousel_item';
+        if (active) {
+          carousel_item.className = 'carousel_item active';
+        } else {
+          carousel_item.className = 'carousel_item'
+        }
+        
         img = document.createElement('img');
         img.setAttribute('src', img_path);
         img.className = 'd-block w-100';
@@ -100,20 +98,23 @@
         carousel_ind_item = document.createElement('li');
         carousel_ind_item.setAttribute('data-target', '#carouselExampleCaptions');
         carousel_ind_item.setAttribute('data-slide-to', index);
+        if (active) {
+          carousel_ind_item.className = 'active';
+        }
         carousel_ind.appendChild(carousel_ind_item);
     }
 
     // Get all items and add to carousel
-    getRequest('/products', res => {
-        for (i=0; i < res.length; i++) {
-            img_path = 'pictures/black.jpg';
-            if (res[i].images.length > 0) {
-                path = res[i].images[0].replace(/\\/g, '/');
-                img_path = base_url + '/' + path;
-            }
-            addCarouselItem(img_path, res[i].name, res[i].description, i+1);
-        }
-    });
+    // getRequest('/products', res => {
+    //     for (i=0; i < res.length; i++) {
+    //         img_path = 'pictures/black.jpg';
+    //         if (res[i].images.length > 0) {
+    //             path = res[i].images[0].replace(/\\/g, '/');
+    //             img_path = base_url + '/' + path;
+    //         }
+    //         addCarouselItem(img_path, res[i].name, res[i].description, i+1);
+    //     }
+    // });
 
     build_navbar();
     

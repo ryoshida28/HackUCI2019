@@ -155,12 +155,27 @@ def getAllProducts(categories=[], account_id=None):
             matches = len(set(product['categories']) and categories)
             productObj = Product(product['id'],product['account_id'], product['name'], product['description'], product['min_price'], product['max_price'], product['categories'], product['images'])
             matches_dict[matches].append(productObj)
-            
+
     products = []
     for matches, product in sorted(matches_dict.items(), reverse=True):
         for p in product:
             products.append(p.getDict())
     return products
+
+def getProductsByCat(category):
+    db = None
+    with open(os.path.join('db', 'products.json'), 'r') as fp:
+        db = json.load(fp)
+    
+    if db == None:
+        return False
+
+    matches = []
+    for product in db['products']:
+        if category in product['categories']:
+            productObj = Product(product['id'],product['account_id'], product['name'], product['description'], product['min_price'], product['max_price'], product['categories'], product['images'])
+            matches.append(productObj.getDict())
+    return matches
 
 def getAllCategories():
     db = None

@@ -27,14 +27,9 @@
         </form>
       </div>
   </nav>
-              <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                      <h5 class="card-title"> Object1</h5>
-                      <button class="like">Like</button>
-                      <button class="dislike">Dislike</button>
-                    </div>
-                  </div>
-              
+  <div class="row" id="card">
+    
+  </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -57,6 +52,59 @@
             event.target.classList.toggle('on');
         });
         }
-        build_navbar();
+  
+      function buildCard(title, image, description) {
+        cardrow = document.getElementById('card');
+
+        card_container = document.createElement('div');
+        card_container.className = 'col-sm-4';
+        card = document.createElement('div');
+        card.className = 'card';
+        card.style = 'width: 18rem;';
+        card_body = document.createElement('div');
+        card_body.className = 'card-body';
+        card_title = document.createElement('h3');
+        card_title.className = 'card-title';
+        card_title.appendChild(document.createTextNode(title));
+        card_img = document.createElement('img');
+        card_img.setAttribute('src', image);
+        card_img.style = 'width:200px;'
+        card_description = document.createElement('p');
+        card_description.appendChild(document.createTextNode(description))
+        card_like = document.createElement('button');
+        card_like.className = 'btn btn-primary like';
+        card_like.appendChild(document.createTextNode('Like'));
+        card_dislike = document.createElement('button');
+        card_dislike.className = 'btn btn-primary dislike';
+        card_dislike.appendChild(document.createTextNode('Dislike'));
+        card_body.appendChild(card_title);
+        card_body.appendChild(card_img);
+        card_body.appendChild(card_description);
+        card_body.appendChild(card_like);
+        card_body.appendChild(card_dislike);
+        card.appendChild(card_body);
+        card_container.appendChild(card);
+        cardrow.appendChild(card_container);
+      }
+
+    url = window.location.href;
+    argsStr = url.substring(url.indexOf('?')+1).split('=')[1];
+    
+    getRequest('/products/'+argsStr, res => {
+      console.log(res);
+      console.log('ther' + res[0]);
+      for (i = 0; i < res.length; i++) {
+        image = '/pictures/black.jpg';
+        if (res[i].images.length > 0) {
+          image = res[i].images[0];
+        }
+        path = res[i].images[0].replace(/\\/g, '/');
+        img_path = base_url + '/' + path;
+        buildCard(res[i].name, img_path, res[i].description);
+      }
+    });
+
+    build_navbar();
+
 
 </script>

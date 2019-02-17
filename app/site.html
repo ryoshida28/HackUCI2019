@@ -68,7 +68,7 @@
 
     getRequest('/categories', res => {
       for (i = 0; i < res.length; i++) {
-        buildCard(res[i], 'swipe.html', 'View');
+        buildCard(res[i], 'swipe.html?category_id='+res[i], 'View');
       }
     })
 

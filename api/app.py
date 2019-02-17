@@ -31,6 +31,10 @@ def getProducts():
     products = db.getAllProducts()
     return jsonify(products)
 
+@app.route('/products/<category>', methods=['GET'])
+def getProductsByCategory(category):
+    return jsonify(db.getProductsByCat(category))
+
 @app.route('/account/<account_id>/products', methods=['GET'])
 def get_product_by_account_id(account_id):
     products = db.getAllProducts([], account_id)
