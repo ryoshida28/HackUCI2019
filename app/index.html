@@ -147,6 +147,7 @@
 <!-- 
 <script src="js/requests.js"></script>
 <script>
+
     reg_form_inp = document.querySelectorAll("#form-register input");
 
     // Event Listeners
@@ -176,11 +177,10 @@
     registerButton.addEventListener('click', submitRegister);
 
 
-    //lgn_form = document.getElementById('form-login');    // This is the login form
-    //lgn_form_inp = document.querySelectorAll('#form-login input')
+    lgn_form_inp = document.querySelectorAll('#form-login input')
 
     // Event Listeners
-    /*
+    var loginButton = document.getElementById("login")
     function submitLogin(e) {
         e.preventDefault();
         route = '/login';
@@ -196,10 +196,8 @@
             }
         });
     }
-
-
     // Add EventListeners
-    lgn_form.addEventListener('submit', submitLogin);
-*/
+    loginButton.addEventListener('click', submitLogin);
+
     
 </script> -->
