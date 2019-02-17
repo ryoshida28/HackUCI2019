@@ -74,15 +74,6 @@
   <script src="js/components.js"></script>
   <script>
     // Determine redirect
-    /*cookies = parse_cookies(document.cookie);
-    console.log(cookies);
-    
-    postRequest('/account', cookies, res=> {
-        console.log(res);
-        if (!res.success) {
-            window.location.assign('login.html');
-        }
-    }); */
 
     // Get DOM items
     post_form = document.getElementById('form-post_item');
@@ -113,7 +104,11 @@
     }
 
     function addCategory(e) {
+<<<<<<< HEAD
+        e.preventDefault();
+=======
       e.preventDefault()
+>>>>>>> 82d169d5487951bb5db6f11e9f574f2e00440c74
         category = document.getElementById('category-add').value;
         li = document.createElement('li');
         li.appendChild(document.createTextNode(category));

@@ -161,3 +161,18 @@ def getAllProducts(categories=[], account_id=None):
         for p in product:
             products.append(p.getDict())
     return products
+
+def getAllCategories():
+    db = None
+    with open(os.path.join('db', 'products.json'), 'r') as fp:
+        db = json.load(fp)
+    
+    if db == None:
+        return False
+    
+    categories = defaultdict(int)
+    for product in db['products']:
+        for category in product['categories']:
+            categories[category] += 1
+    
+    return [c for c,_ in sorted(categories.items(), key=(lambda x: x[1]))]
