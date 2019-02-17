@@ -100,3 +100,4 @@ class Logout(Resource):
             res.setSuccess(False)
             res.addErrorMessage('Token not found')
             return res.getResponse()
+

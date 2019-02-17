@@ -40,6 +40,8 @@ def createAccount(acct, passHash):
         db['last_insert_id'] = acct.id
         with open(os.path.join('db', 'accounts.json'), 'w') as fp:
             json.dump(db, fp)
+
+        os.mkdir(os.path.join('db', 'images', str(acct.id)))
         return True
 
 def getAccountByID(id, db):
@@ -113,3 +115,6 @@ def removeToken(id, token):
         json.dump(db, fp)
 
     return found_token
+
+def uploadFile(f, product):
+    pass
