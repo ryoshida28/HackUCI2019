@@ -141,3 +141,14 @@ def createProduct(product):
             json.dump(db, fp)
 
         return True
+
+def getAllProducts(categories=[]):
+    db = None
+    with open(os.path.join('db', 'products.json'), 'r') as fp:
+        db = json.load(fp)
+    
+    if db == None:
+        return False
+    
+    for product in db['products']:
+        pass

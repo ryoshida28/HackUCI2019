@@ -101,3 +101,11 @@ class Logout(Resource):
             res.addErrorMessage('Token not found')
             return res.getResponse()
 
+class GetProducts(Resource):
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+    
+    def get(self):
+        args = self.parser.parse_args()
+        return jsonify({})
+        
