@@ -17,7 +17,7 @@
         <label for="image-0">Upload Image</label>
         <div id="image-upload-container" style="border: 1px; border-style:solid; padding:1em; margin: 1em;">
             <div id="inputs">
-                <input class="image_inp" type="file" name="image-0" id="image-0" accept="image/*">
+                <input class="image_inp" type="file" name="image-0" id="image-0" accept="image/*" enctype="multipart/form-data">
                 <br><br>
             </div>
             <button id='btn-add_more'>Add More</button>
@@ -65,7 +65,7 @@
     btn_add_cateogory = document.getElementById('btn-add_category');
     div_categories = document.getElementById('categories-container');
 
-
+    
     // Event Listeners
     function addMoreImages(e) {
         btn = e.target;
@@ -73,7 +73,9 @@
         newImgInp = document.createElement('input');
         newImgInp.setAttribute('type','file');
         newImgInp.setAttribute('accept', 'image/*');
+        newImgInp.setAttribute('enctype', 'multipart/form-data')
         newImgInp.className = 'image_inp';
+        
 
         // Get last file add
         file_inps = document.querySelectorAll('#image-upload-container input');
@@ -87,41 +89,61 @@
     }
 
     function addCategory(e) {
-        category = document.getElementById('category-add').value;
-        li = document.createElement('li');
+        e.preventDefault();
+        var category = document.getElementById('category-add').value;
+        var li = document.createElement('li');
         li.appendChild(document.createTextNode(category));
-        ul = document.getElementById('list-categories');
+        var ul = document.getElementById('list-categories');
         ul.appendChild(li);
     }
 
     function postItem(e) {
         e.preventDefault();
-
-        name = document.getElementById('input-item_name').value;
-        files = [];
-        inputs = document.getElementsByClassName('image_inp');
+        var data = new FormData();
+        var name = document.getElementById('input-item_name').value;
+        var files = [];
+        var inputs = document.getElementsByClassName('image_inp');
         for (i = 0; i < inputs.length; i++) {
             if (inputs[i].files.length == 1) {
                 files.push(inputs[i].files[0]);
             }
         }
 
+
         categoriesList = document.querySelectorAll('#list-categories li');
+        categories = [];
+        for (i = 0; i < categoriesList.length; i++) {
+            categories.push(categoriesList[i].innerText);
+        }
 
 
         description = document.getElementById('input-description').value;
         min_price = document.getElementById('input-min_price').value;
         max_price = document.getElementById('input-max_price').value;
 
-        params = {
-            name: name,
-            categories: Array.from(categoriesList),
-            description: description,
-            min_price: min_price,
-            max_price: max_price,
-            files: files
+        data.append('name', name);
+        data.append('categories', JSON.stringify(categories));
+        data.append('description', description);
+        data.append('min_price', min_price);
+        data.append('max_price', max_price);
+        data.append('token', cookies.token);
+        data.append('account_id', cookies.id);
+        for (i = 0; i < file.length; i++) {
+            data.append('image'+i, files[i])
+        }
+        
+        console.log(data);
+
+        xhr = new XMLHttpRequest()
+        xhr.open('POST', 'http://127.0.0.1:5000/post_item');
+        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            console.log(this.responseText);
         };
-        console.log(params);
+        xhr.send(data)
+        // postRequest('/post_item', params, res => {
+        //     console.log(res);
+        // });
     }
 
 
