@@ -46,19 +46,8 @@ function postRequest(route, params, handleRes) {
  * 
  * NOTE: this function may not be fully functional yet.
  */
-function getRequest(route, params, handleRes) {
-    var req_head = getHeader();
-
-    args = Array()
-    for (let [key, value] of Object.entries(params)) {
-        if (value instanceof Array || value instanceof Object) {
-            value = JSON.stringify(value)
-        }
-        args.push(key + '=' + value)
-    }
-    query = '?' + args.join('&')
-    
-    const req = new Request(base_url+route+query, {
+function getRequest(route, handleRes) {
+    const req = new Request(base_url+route, {
         method: 'GET',
         mode: 'cors'
     });

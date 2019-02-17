@@ -1,17 +1,18 @@
 """ Contains all the route control for the api."""
 
-from flask import Flask, jsonify, redirect, url_for, session, request
+from flask import Flask, jsonify, redirect, url_for, session, request, send_from_directory
 from flask_restful import Resource, Api
 from flask_cors import CORS     # Allows cross origin references to api
 
 import os
 
-from routes import Register, Login, GetAccount, Logout
+from routes import Register, Login, GetAccount, Logout, GetProducts
 import db
 from response import Response
 from product import Product
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = '\db'
 
 CORS(app)   # This allows access from all domains, TODO: fix this
 api = Api(app)
@@ -21,7 +22,8 @@ api.add_resource(Register, '/register')
 api.add_resource(Login, '/login')
 api.add_resource(GetAccount, '/account')
 api.add_resource(Logout, '/logout')
-# api.add_resource(PostItem, '/post_item')
+api.add_resource(GetProducts, '/products')
+
 
 @app.route('/post_item', methods=['POST'])
 def post_item():
@@ -57,6 +59,13 @@ def post_item():
             res.setSuccess(False)
 
         return res.getResponse()
+
+
+# @app.route('/static/images/<account_id>/<product_id>/<filename>', methods=['GET'])
+# def getFile(account_id, product_id, filename):
+#     path = os.path.join(app.config['UPLOAD_FOLDER'], account_id, product_id)
+#     print(path)
+#     return send_from_directory(path, filename)
 
 if __name__ == '__main__':
     app.run(debug=True)

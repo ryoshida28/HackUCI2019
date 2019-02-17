@@ -4,6 +4,8 @@ import os
 from datetime import datetime, timedelta
 import base64
 from account import Account
+from collections import defaultdict
+from product import Product
 
 
 def lastInsertID(filename):
@@ -41,7 +43,7 @@ def createAccount(acct, passHash):
         with open(os.path.join('db', 'accounts.json'), 'w') as fp:
             json.dump(db, fp)
 
-        os.mkdir(os.path.join('db', 'images', str(acct.id)))
+        os.mkdir(os.path.join('static', 'images', str(acct.id)))
         return True
 
 def getAccountByID(id, db):
@@ -117,7 +119,7 @@ def removeToken(id, token):
     return found_token
 
 def uploadFile(f, product, img_id):
-    filepath = os.path.join('db','images',str(product.account_id), str(product.id))
+    filepath = os.path.join('static', 'images',str(product.account_id), str(product.id))
     if not os.path.isdir(filepath):
         os.mkdir(filepath)
     
@@ -149,6 +151,15 @@ def getAllProducts(categories=[]):
     
     if db == None:
         return False
-    
+    categories = set(categories)
+    matches_dict = defaultdict(list)
     for product in db['products']:
-        pass
+        matches = len(set(product['categories']) and categories)
+        productObj = Product(product['id'],product['account_id'], product['name'], product['description'], product['min_price'], product['max_price'], product['categories'], product['images'])
+        matches_dict[matches].append(productObj)
+
+    products = []
+    for matches, product in sorted(matches_dict.items(), reverse=True):
+        for p in product:
+            products.append(p.getDict())
+    return products

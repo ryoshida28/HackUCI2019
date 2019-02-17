@@ -1,115 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body class="w3-content" style="max-width:1300px">
-<head>
-  <title>Bargain Swipes</title>
-  <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-  
-</head>
-<body>
-
-  <!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
-  <img class="w3-image" src="pictures/business.jpeg" alt="" width="1600" height="500">
-  <div class="w3-display-bottomleft w3-padding-large">
-    <h1 style="color:white; text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;  " class="w3-xxlarge">Bargain Swipes</h1>
-  </div>
-</header>
-<!-- First Grid: Logo & About -->
-<div class="w3-row">
-    <div class="w3-half w3-black w3-container w3-center" style="height:700px">
-      <div>
-        <h1>Sign Up</h1>
-      </div>
-      <div>
-        <!-- Sign In -->
-  <form id="form-register">
-    <div class="form-group" id=>
-        <label for="firstName">First Name:</label>
-        <input type="text" class="form-control" placeholder="Enter First Name">
-    </div>
-
-    <div class="form-group">
-        <label for="lastName">Last Name:</label>
-        <input type="text" class="form-control" placeholder="Enter Last Name">
-    </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" placeholder="Enter Email">
-    </div>
-    <div class="form-group">
-        <label for="birthday">Birthday</label>
-        <input type="date" class="form-control" placeholder = "mm/dd/yyyy">
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" placeholder="Enter Passeword">
-    </div>
-    <div class="form-group">
-        <label for="cPassword">Confirm Password:</label>
-        <input type="password" class="form-control" placeholder ="Confirm Password">
-    </div>
-    <input type="submit" value="" hidden>
-    <!-- Submit Button -->
-    <button id="register" class="btn btn-primary">Submit</button>
-    <!-- Submit Button -->
-
-  </form>
-
-      <!-- Sign In -->
-      </div>
-    </div>
-    <div class="w3-half w3-blue-grey w3-container w3-center" style="height:700px">
-          <h1>Log In</h1>
-          <!-- Log In -->
-  <form id="form-login">
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" placeholder ="Enter Email">
-    </div>
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" placeholder = "Enter Password">
-    </div>
-    <!-- Submit Button -->
-    <button id="login" class="btn btn-primary">Submit</button>
-    <!-- Submit Button -->
-
-  </form>
-        <!-- Log In -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/site.css">
+    <title>Bargain Swipes</title>
+  </head>
+  <body>
+    <!-- NavBar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">bargainswipes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto" id="nav-items"></ul>
+          <ul class="navbar-nav ml-auto" id="acct-ctr" style="margin-right: 10px;"></ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
         </div>
-      </div>
-  </div>
-
-<!-- Footer -->
-<footer class="page-footer font-small teal pt-4">
-
-    <!-- Footer Text -->
+    </nav>
     
-  </footer>
-  <!-- Footer -->
+    <div class="jumbotron">
+        <h1 class="display-4"><b>Bargain Swipes</b></h1>
+        <p class="lead">Swipe your way to what you need</p>
+        <hr class="my-4">
+        <p>For quick and easy buying and selling</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <div class="bd-example" style="width:40%; height:40%; margin: auto;">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" id="carousel_indicator">
+            </ol>
+            <div id="carousel-inner" class="carousel-inner" style="margin: auto;">
+                <div class="carousel-item active">
+                    <img src="/app/pictures/img.jpg" class="d-block w-100" style="margin:auto; display: block; width:400px; height: 400px;" alt="">
+                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.9);">
+                        <h5>First slide label</h5>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
 
+    <footer>
+        <p>&copy; bargainswipes</p>
+    </footer>
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 
   <script src="js/requests.js"></script>
-
-  <!-- Handle Register -->
+  <script src="js/authorization.js"></script>
+  <script src="js/components.js"></script>
   <script>
     // Get DOM elements
     reg_form = document.getElementById('form-register');
@@ -161,15 +123,48 @@
               document.cookie = 'token=' + res.object.tokens[0].token+'; path=/';
               document.cookie = 'id='+res.object.id+'; path=/';
               window.location.assign('site.html')
-            }
-        })
+    function addCarouselItem(img_path, name, descr, index) {
+        carousel_inner = document.getElementById('carousel-inner');
+        carousel_ind = document.getElementById('carousel_indicator');
+
+        carousel_item = document.createElement('div');
+        carousel_item.className = 'carousel_item';
+        img = document.createElement('img');
+        img.setAttribute('src', img_path);
+        img.className = 'd-block w-100';
+        img.style = 'margin:auto; display: block; width:400px; height: 400px;'
+        carousel_caption = document.createElement('div');
+        carousel_caption.className = 'carousel-caption d-none d-md-block';
+        carousel_caption.style = 'background: rgba(0,0,0);';
+        slide_name = document.createElement('h5');
+        slide_name.appendChild(document.createTextNode(name));
+        description = document.createElement('p');
+        description.appendChild(document.createTextNode(descr));
+        carousel_caption.appendChild(slide_name);
+        carousel_caption.appendChild(description);
+        carousel_item.appendChild(img);
+        carousel_item.appendChild(carousel_caption);
+        carousel_inner.appendChild(carousel_item);
+
+        carousel_ind_item = document.createElement('li');
+        carousel_ind_item.setAttribute('data-target', '#carouselExampleCaptions');
+        carousel_ind_item.setAttribute('data-slide-to', index);
+        carousel_ind.appendChild(carousel_ind_item);
     }
-    log_form.addEventListener('submit',login)
-    reg_btn.addEventListener('click',login)
 
+    // Get all items and add to carousel
+    getRequest('/products', res => {
+        for (i=0; i < res.length; i++) {
+            img_path = 'pictures/black.jpg';
+            if (res[i].images.length > 0) {
+                path = res[i].images[0].replace(/\\/g, '/');
+                img_path = base_url + '/' + path;
+            }
+            addCarouselItem(img_path, res[i].name, res[i].description, i+1);
+        }
+    });
+
+    build_navbar();
+    
   </script>
-
-
-</body>
 </html>
-
