@@ -1,1 +1,61 @@
-{"products": [{"id": 1, "account_id": 2, "name": "Dildo", "description": "dsfadf", "min_price": "10", "max_price": "20", "categories": ["sex toys"], "images": ["static\\images\\2\\0\\img-0.jpeg"]}, {"id": 2, "account_id": 2, "name": "Something", "description": "idk", "min_price": "0", "max_price": "1", "categories": ["lul something", "sex toys"], "images": ["static\\images\\2\\0\\img-0.jpeg"]}], "last_insert_id": 2}
+{
+    "products": [
+        {
+            "id": 1,
+            "account_id": 2,
+            "name": "test",
+            "description": "",
+            "min_price": "",
+            "max_price": "",
+            "categories": "[\"dildos\"]",
+            "images": []
+        },
+        {
+            "id": 2,
+            "account_id": 2,
+            "name": "test",
+            "description": "",
+            "min_price": "",
+            "max_price": "",
+            "categories": "[\"dildo\"]",
+            "images": [
+                "static/images/2/0/img-0.jpeg"
+            ]
+        },
+        {
+            "id": 3,
+            "account_id": 2,
+            "name": "Random",
+            "description": "ummmm",
+            "min_price": "1",
+            "max_price": "5",
+            "categories": "[]",
+            "images": [
+                "static/images/2/0/img-0.jpeg"
+            ]
+        },
+        {
+            "id": 4,
+            "account_id": 2,
+            "name": "test",
+            "description": "A picture",
+            "min_price": "1",
+            "max_price": "5",
+            "categories": "[\"sexy\"]",
+            "images": [
+                "static/images/2/0/img-0.jpeg"
+            ]
+        },
+        {
+            "id": 5,
+            "account_id": 2,
+            "name": "example",
+            "description": "1234",
+            "min_price": "9999",
+            "max_price": "100000",
+            "categories": "[]",
+            "images": []
+        }
+    ],
+    "last_insert_id": 5
+}
