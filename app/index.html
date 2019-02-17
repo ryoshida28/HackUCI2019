@@ -64,8 +64,9 @@
         <label for="cPassword">Confirm Password:</label>
         <input type="password" class="form-control" placeholder ="Confirm Password">
     </div>
+    <input type="submit" value="" hidden>
     <!-- Submit Button -->
-    <button type="submit" id = "register" class="btn btn-primary"><a href="site.html"style="color:white">Submit</a></button>
+    <button id="register" class="btn btn-primary">Submit</button>
     <!-- Submit Button -->
 
   </form>
@@ -86,7 +87,7 @@
         <input type="password" class="form-control" placeholder = "Enter Password">
     </div>
     <!-- Submit Button -->
-    <button type="submit" id="login" class="btn btn-primary"><a href="site.html" style="color:white">Submit</a></button>
+    <button id="login" class="btn btn-primary">Submit</button>
     <!-- Submit Button -->
 
   </form>
@@ -104,9 +105,46 @@
   <!-- Footer -->
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+  <script src="js/requests.js"></script>
+
+  <!-- Handle Register -->
+  <script>
+    // Get DOM elements
+    reg_form = document.getElementById('form-register');
+    reg_btn = document.getElementById('register');
+    reg_inp = document.querySelectorAll('#form-register input');
+    console.log(reg_inp);
+
+    // Event Listeners
+    function register(e) {
+      e.preventDefault();
+      params = {
+        first_name: reg_inp[0].value,
+        last_name: reg_inp[1].value,
+        email: reg_inp[2].value,
+        birthdate: reg_inp[3].value,
+        password: reg_inp[4].value,
+        confirm_password: reg_inp[5].value
+      }
+      
+      postRequest('/register', params, res => {
+        console.log(res);    // TODO: fix this
+      })
+    }
+
+    // Add Event Listeners
+    reg_form.addEventListener('submit', register)
+    reg_btn.addEventListener('click', register)
+    
+
+  </script>
+
+
 </body>
 </html>
-
+<!-- 
 <script src="js/requests.js"></script>
 <script>
     reg_form_inp = document.querySelectorAll("#form-register input");
@@ -164,4 +202,4 @@
     lgn_form.addEventListener('submit', submitLogin);
 */
     
-</script>
+</script> -->
