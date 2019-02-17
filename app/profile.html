@@ -76,8 +76,13 @@ function getUser(e){
   params = {
   }
 
-  
-  
+  account = is_logged_in()
+  if(account === false) {
+    window.location.assign(index.html)
+  }
+  else{
+    
+  }
 }
 
 build_navbar();

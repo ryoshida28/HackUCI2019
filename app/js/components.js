@@ -6,7 +6,7 @@ function build_navbar() {
     home.className="nav-item"
     home_a = document.createElement('a');
     home_a.className = 'nav-link';
-    home_a.setAttribute('href', 'index.html');
+    home_a.setAttribute('href', 'site.html');
     home_a.appendChild(document.createTextNode('Home'));
     home.appendChild(home_a);
     nav_items.appendChild(home);
@@ -63,12 +63,12 @@ function build_navbar() {
         sign_out.addEventListener('click', e => logout(e, 'index.html'));
     }
 
-    buy = document.createElement('li');
-    buy.className="nav-item"
-    buy_a = document.createElement('a');
-    buy_a.className = 'nav-link';
-    buy_a.setAttribute('href', 'buy.html');
-    buy_a.appendChild(document.createTextNode('Buy'));
-    buy.appendChild(buy_a);
-    nav_items.appendChild(buy);
+    // buy = document.createElement('li');
+    // buy.className="nav-item"
+    // buy_a = document.createElement('a');
+    // buy_a.className = 'nav-link';
+    // buy_a.setAttribute('href', 'buy.html');
+    // buy_a.appendChild(document.createTextNode('Buy'));
+    // buy.appendChild(buy_a);
+    // nav_items.appendChild(buy);
 }
