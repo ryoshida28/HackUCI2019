@@ -5,11 +5,13 @@ from flask_restful import Resource, Api
 from flask_cors import CORS     # Allows cross origin references to api
 
 import os
+import json
 
 from routes import Register, Login, GetAccount, Logout, GetProducts
 import db
 from response import Response
 from product import Product
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '\db'
@@ -37,10 +39,8 @@ def get_product_by_account_id(account_id):
 @app.route('/post_item', methods=['POST'])
 def post_item():
     if request.method == 'POST':
-        
         res = Response()
         data = request.form
-        print(request.form)
         account_id = int(data['account_id'])
         token = data['token']
 
@@ -52,7 +52,7 @@ def post_item():
             return res.getResponse()
         
         # Get Product
-        prod = Product(0, acct.id, data['name'], data['description'], data['min_price'], data['max_price'], data['categories'], [])
+        prod = Product(0, acct.id, data['name'], data['description'], data['min_price'], data['max_price'], json.loads(data['categories']), [])
 
         os.path.isdir("/db/images/{account_id}")
         id = 0
@@ -68,6 +68,10 @@ def post_item():
             res.setSuccess(False)
 
         return res.getResponse()
+
+@app.route('/categories', methods=['GET'])
+def getCategories():
+    return jsonify(db.getAllCategories())
 
 
 # @app.route('/static/images/<account_id>/<product_id>/<filename>', methods=['GET'])

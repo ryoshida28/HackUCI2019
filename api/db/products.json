@@ -1,5 +1,1 @@
-{
-    "products": [
-    ],
-    "last_insert_id": 0
-}
+{"products": [{"id": 1, "account_id": 2, "name": "Dildo", "description": "", "min_price": "", "max_price": "", "categories": ["dildo"], "images": ["static\\images\\2\\0\\img-0.jpeg"]}, {"id": 2, "account_id": 2, "name": "Dildo", "description": "a beautiful piece of art.", "min_price": "10", "max_price": "20", "categories": ["sex toys", "women", "men", "home living"], "images": ["static\\images\\2\\0\\img-0.jpeg"]}], "last_insert_id": 2}
