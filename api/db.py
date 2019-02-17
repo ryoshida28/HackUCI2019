@@ -81,7 +81,6 @@ def authenticate(email, password):
     else:
         for account in db['authorization']:
             if account['email'] == email and sha256_crypt.verify(password, account['password']):
-                
                 token = generateToken()
                 for i in range(len(db['accounts'])):
                     if db['accounts'][i]['id'] == account['id']:
@@ -89,8 +88,6 @@ def authenticate(email, password):
                 with open(os.path.join('db', 'accounts.json'), 'w') as fp:
                     json.dump(db, fp)
                 return getAccountByID(account['id'], db)
-            else:
-                break
         return False
 
 def removeToken(id, token):
