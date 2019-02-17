@@ -1,10 +1,1 @@
-{
-    "accounts": [
-        
-        
-    ],
-    "authorization": [
-        
-    ],
-    "last_insert_id": 2
-}
+{"accounts": [{"id": 1, "first_name": "1234", "last_name": "123", "email": "1234@uci.edu", "birthdate": "2019-02-05", "date_created": "2019-02-17 02:17:07.021666", "tokens": [{"token": "GXXiCU65v1MfRONEUgyOD63ByTfZxppM", "expires": "2019-02-17 03:17:07.021763"}, {"token": "k8pvLyKyYZQ7UqyZBrZD1TRjEEb4P+tC", "expires": "2019-02-17 03:18:57.063464"}, {"token": "zD1EZMJOBmI1t7RGjMJOXOGOvsu0lhRY", "expires": "2019-02-17 03:19:23.623631"}]}, {"id": 2, "first_name": "jason", "last_name": "z", "email": "fi@gmail.com", "birthdate": "2019-02-04", "date_created": "2019-02-17 02:34:26.796597", "tokens": [{"token": "aXsn3/TuPmXEMrfwfMDsZd1+E+DXIlK3", "expires": "2019-02-17 03:34:26.796624"}]}, {"id": 3, "first_name": "1", "last_name": "2", "email": "1@gmail.com", "birthdate": "2019-02-07", "date_created": "2019-02-17 02:34:45.510829", "tokens": [{"token": "JegEZQypdtXTN8OVPmDnNn8d8QmGYFbB", "expires": "2019-02-17 03:34:45.510848"}]}], "authorization": [{"id": 3, "email": "1234@uci.edu", "password": "$5$rounds=535000$KkXPAaqPJj5NRr8O$/1HZSNDSyqfHnXjToGhAwe6iOoZJd9CiwDcIZ54Zjt3"}, {"id": 2, "email": "fi@gmail.com", "password": "$5$rounds=535000$uR3mKAQo1eHfOceJ$yjl/G20bKw0K7jKGXBDkbn1bIg2pEciWpc4Lz92HsmA"}, {"id": 3, "email": "1@gmail.com", "password": "$5$rounds=535000$mVYql/Tnwuqh3XeS$Ztosnk1PFQiUoSZsiJE9tsGHCoyDK/GvmOFIA2Yd1j5"}], "last_insert_id": 3}
