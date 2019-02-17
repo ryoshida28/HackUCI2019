@@ -22,13 +22,17 @@ api.add_resource(Register, '/register')
 api.add_resource(Login, '/login')
 api.add_resource(GetAccount, '/account')
 api.add_resource(Logout, '/logout')
-api.add_resource(GetProducts, '/products')
+# api.add_resource(GetProducts, '/products')
 
-@app.route('/products/<account_id>', methods=['GET'])
-def get_product_by_id(account_id):
-    products = db.getAllProducts([], account_id)
+@app.route('/products', methods=['GET'])
+def getProducts():
+    products = db.getAllProducts()
     return jsonify(products)
 
+@app.route('/account/<account_id>/products', methods=['GET'])
+def get_product_by_account_id(account_id):
+    products = db.getAllProducts([], account_id)
+    return jsonify(products)
 
 @app.route('/post_item', methods=['POST'])
 def post_item():

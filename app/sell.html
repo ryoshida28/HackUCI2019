@@ -123,31 +123,48 @@
     function postItem(e) {
         e.preventDefault();
 
-        name = document.getElementById('input-item_name').value;
-        files = [];
-        inputs = document.getElementsByClassName('image_inp');
+        var data = new FormData();
+        var name = document.getElementById('input-item_name').value;
+        var files = [];
+        var inputs = document.getElementsByClassName('image_inp');
         for (i = 0; i < inputs.length; i++) {
             if (inputs[i].files.length == 1) {
                 files.push(inputs[i].files[0]);
             }
         }
 
+
         categoriesList = document.querySelectorAll('#list-categories li');
+        categories = [];
+        for (i = 0; i < categoriesList.length; i++) {
+            categories.push(categoriesList[i].innerText);
+        }
 
 
         description = document.getElementById('input-description').value;
         min_price = document.getElementById('input-min_price').value;
         max_price = document.getElementById('input-max_price').value;
 
-        params = {
-            name: name,
-            categories: Array.from(categoriesList),
-            description: description,
-            min_price: min_price,
-            max_price: max_price,
-            files: files
+        data.append('name', name);
+        data.append('categories', JSON.stringify(categories));
+        data.append('description', description);
+        data.append('min_price', min_price);
+        data.append('max_price', max_price);
+        data.append('token', cookies.token);
+        data.append('account_id', cookies.id);
+        for (i = 0; i < files.length; i++) {
+            data.append('image'+i, files[i]);
+        }
+        
+        console.log(data);
+
+        xhr = new XMLHttpRequest()
+        xhr.open('POST', 'http://127.0.0.1:5000/post_item', true);
+        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            console.log(this.responseText);
         };
-        console.log(params);
+        xhr.send(data)
     }
 
 

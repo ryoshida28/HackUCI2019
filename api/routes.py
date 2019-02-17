@@ -108,6 +108,7 @@ class GetProducts(Resource):
     def get(self):
         res = Response()
         args = self.parser.parse_args()
+        
         products = db.getAllProducts()
         return jsonify(products)
         
