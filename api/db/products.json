@@ -1,5 +1,1 @@
-{
-    "products": [
-    ],
-    "last_insert_id": 0
-}
+{"products": [{"id": 1, "account_id": 1, "name": "Item", "description": "hehehe", "min_price": "1", "max_price": "2", "categories": "[\"hehe\"]", "images": ["static\\images\\1\\0\\img-0.jpeg"]}], "last_insert_id": 1}

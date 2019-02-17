@@ -1,7 +1,1 @@
-{
-    "accounts": [
-    ],
-    "authorization": [
-    ],
-    "last_insert_id": 0
-}
+{"accounts": [{"id": 1, "first_name": "Ryan", "last_name": "Yoshida", "email": "ryan.yoshida@comcast.net", "birthdate": "2000-04-07", "date_created": "2019-02-17 06:08:49.648719", "tokens": []}, {"id": 3, "first_name": "Jason", "last_name": "Zhu", "email": "jasoz10@uci.edu", "birthdate": "2019-02-01", "date_created": "2019-02-17 08:04:41.002453", "tokens": []}], "authorization": [{"id": 1, "email": "ryan.yoshida@comcast.net", "password": "$5$rounds=535000$B9mir5Miv4NssBSz$Bi.PYh.A/jdIAbOdeTTXtBm2/WsOx2HTrB9HpE6vQd0"}, {"id": 3, "email": "jasoz10@uci.edu", "password": "$5$rounds=535000$6he8b9XayIz8i9U8$YKUlHkwlHkIMY1vegcypnjc/GVXEqcOfwvnDsr.PAu4"}], "last_insert_id": 3}

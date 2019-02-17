@@ -106,6 +106,8 @@ class GetProducts(Resource):
         self.parser = reqparse.RequestParser()
     
     def get(self):
+        res = Response()
         args = self.parser.parse_args()
-        return jsonify({})
+        products = db.getAllProducts()
+        return jsonify(products)
         

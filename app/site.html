@@ -13,7 +13,7 @@
   <body>
     <!-- NavBar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">navigation</a>
+        <a class="navbar-brand" href="index.html">bargainswipes</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,13 +24,13 @@
               <a class="nav-link" href="site.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Sign Out</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="profile.html">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="post_item.html">Sell</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="sign-out" href="#">Sign Out</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -71,7 +71,8 @@
 <script>
     // Get DOM items
     lgn_form = document.getElementById('form-tag');    // This is the login form
-    lgn_form_inp = document.querySelectorAll('#form-tag input')
+    lgn_form_inp = document.querySelectorAll('#form-tag input');
+    sign_out_btn = document.getElementById('sign-out');
 
     // Event Listeners
     function submitLogin(e) {
@@ -90,9 +91,23 @@
         });
     }
 
+    function logout(e) {
+      e.preventDefault();
 
+      cookies = parse_cookies(document.cookie);
+      postRequest('/logout', cookies, res => {
+          if (res.success) {
+              document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              document.cookie = 'id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              console.log(parse_cookies(document.cookie))
+              window.location.assign('login.html')
+          }
+      });
+    }
+    
     // Add EventListeners
     lgn_form.addEventListener('submit', submitLogin);
+    sign_out_btn.addEventListener('click', logout);
     
 
 </script>
