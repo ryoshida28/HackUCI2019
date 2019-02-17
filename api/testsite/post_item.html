@@ -128,16 +128,16 @@
         data.append('max_price', max_price);
         data.append('token', cookies.token);
         data.append('account_id', cookies.id);
-        for (i = 0; i < file.length; i++) {
-            data.append('image'+i, files[i])
+        for (i = 0; i < files.length; i++) {
+            data.append('image'+i, files[i]);
         }
         
         console.log(data);
 
         xhr = new XMLHttpRequest()
-        xhr.open('POST', 'http://127.0.0.1:5000/post_item');
-        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
+        xhr.open('POST', 'http://127.0.0.1:5000/post_item', true);
+        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
             console.log(this.responseText);
         };
         xhr.send(data)

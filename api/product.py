@@ -10,6 +10,9 @@ class Product(Dictable):
         self.categories = categories
         self.images = images
     
+    def addImage(self, filename):
+        self.images.append(filename)
+
     def getDict(self):
         return {
             'id': self.id,
