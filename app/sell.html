@@ -104,11 +104,7 @@
     }
 
     function addCategory(e) {
-<<<<<<< HEAD
-        e.preventDefault();
-=======
-      e.preventDefault()
->>>>>>> 82d169d5487951bb5db6f11e9f574f2e00440c74
+        e.preventDefault()
         category = document.getElementById('category-add').value;
         li = document.createElement('li');
         li.appendChild(document.createTextNode(category));
@@ -158,11 +154,11 @@
         xhr.open('POST', 'http://127.0.0.1:5000/post_item', true);
         // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
-            console.log(this.responseText);
+            window.location.assign("profile.html")
         };
         xhr.send(data)
 
-        window.location.assign("profile.html")
+        
     }
 
 

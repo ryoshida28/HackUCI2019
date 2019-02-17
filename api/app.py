@@ -34,6 +34,7 @@ def getProducts():
 @app.route('/account/<account_id>/products', methods=['GET'])
 def get_product_by_account_id(account_id):
     products = db.getAllProducts([], account_id)
+    print(products)
     return jsonify(products)
 
 @app.route('/post_item', methods=['POST'])

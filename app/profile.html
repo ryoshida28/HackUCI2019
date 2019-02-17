@@ -90,6 +90,7 @@ function getUser(){
               email_.appendChild(document.createTextNode(email))
 
               getRequest('/account/' + account.id + '/products', res => {
+                console.log('get');
                 console.log(res)
                 item = document.getElementById("items")
                 for(i=0;i<res.length;i++){

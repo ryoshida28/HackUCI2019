@@ -151,11 +151,11 @@ def getAllProducts(categories=[], account_id=None):
     categories = set(categories)
     matches_dict = defaultdict(list)
     for product in db['products']:
-        if account_id == None or account_id != product['account_id']: continue
-        matches = len(set(product['categories']) and categories)
-        productObj = Product(product['id'],product['account_id'], product['name'], product['description'], product['min_price'], product['max_price'], product['categories'], product['images'])
-        matches_dict[matches].append(productObj)
-
+        if (account_id == None) or (int(account_id) == product['account_id']):
+            matches = len(set(product['categories']) and categories)
+            productObj = Product(product['id'],product['account_id'], product['name'], product['description'], product['min_price'], product['max_price'], product['categories'], product['images'])
+            matches_dict[matches].append(productObj)
+            
     products = []
     for matches, product in sorted(matches_dict.items(), reverse=True):
         for p in product:
