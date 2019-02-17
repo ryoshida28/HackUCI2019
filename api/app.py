@@ -24,6 +24,11 @@ api.add_resource(GetAccount, '/account')
 api.add_resource(Logout, '/logout')
 api.add_resource(GetProducts, '/products')
 
+@app.route('/products/<account_id>', methods=['GET'])
+def get_product_by_id(account_id):
+    products = db.getAllProducts([], account_id)
+    return jsonify(products)
+
 
 @app.route('/post_item', methods=['POST'])
 def post_item():

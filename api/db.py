@@ -141,7 +141,7 @@ def createProduct(product):
 
         return True
 
-def getAllProducts(categories=[]):
+def getAllProducts(categories=[], account_id=None):
     db = None
     with open(os.path.join('db', 'products.json'), 'r') as fp:
         db = json.load(fp)
@@ -151,6 +151,7 @@ def getAllProducts(categories=[]):
     categories = set(categories)
     matches_dict = defaultdict(list)
     for product in db['products']:
+        if account_id == None or account_id != product['account_id']: continue
         matches = len(set(product['categories']) and categories)
         productObj = Product(product['id'],product['account_id'], product['name'], product['description'], product['min_price'], product['max_price'], product['categories'], product['images'])
         matches_dict[matches].append(productObj)
