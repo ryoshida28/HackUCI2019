@@ -132,6 +132,7 @@
       postRequest('/register', params, res => {
         console.log(res);    // TODO: fix this
         if(res.success) {
+          console.log("Success")
           document.cookie = 'token='+res.object.tokens[0].token+'; path=/;';
           document.cookie = 'id='+res.object.id+'; path=/;';
           window.location.assign('site.html')
@@ -156,6 +157,7 @@
         postRequest('/login',params,res => {
             console.log(res)
             if(res.success){
+              console.log("Success")
               document.cookie = 'token=' + res.object.tokens[0].token+'; path=/';
               document.cookie = 'id='+res.object.id+'; path=/';
               window.location.assign('site.html')

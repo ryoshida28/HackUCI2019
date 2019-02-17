@@ -79,7 +79,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+<script src="js/requests.js"></script>
 <script>
+
+
+
+function getUser(e){
+  e.preventDefault();
+  params = {
+  }
+
+  getRequest('/product', params, res => {
+    console.log(res);
+    if(res.success){
+      console.log("Success")
+      
+    }
+  })
+}
+  
 
 
 </script>
