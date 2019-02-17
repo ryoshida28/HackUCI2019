@@ -66,3 +66,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<script src="js/requests.js"></script>
+<script>
+    // Get DOM items
+    lgn_form = document.getElementById('form-tag');    // This is the login form
+    lgn_form_inp = document.querySelectorAll('#form-tag input')
+
+    // Event Listeners
+    function submitLogin(e) {
+        e.preventDefault();
+        route = '/login';
+        params = {
+            email: lgn_form_inp[0].value,
+            password: lgn_form_inp[1].value
+        };
+        postRequest(route, params, res => {
+            if (res.success) {
+                document.cookie = 'token='+res.object.tokens[0].token+'; path=/';
+                document.cookie = 'id='+res.object.id+'; path=/';
+                window.location.assign('account.html')
+            }
+        });
+    }
+
+
+    // Add EventListeners
+    lgn_form.addEventListener('submit', submitLogin);
+    
+
+</script>

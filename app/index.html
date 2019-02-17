@@ -7,9 +7,6 @@
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="/style.css" rel="stylesheet">
-
-
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -22,15 +19,6 @@
 </head>
 <body>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
   <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
   <img class="w3-image" src="pictures/business.jpeg" alt="" width="1600" height="500">
@@ -50,34 +38,34 @@
       </div>
       <div>
         <!-- Sign In -->
-  <form>
-    <div class="form-group">
+  <form id="form-register">
+    <div class="form-group" id=>
         <label for="firstName">First Name:</label>
-        <input type="text" class="form-control" id="usr" placeholder="Enter First Name">
+        <input type="text" class="form-control" placeholder="Enter First Name">
     </div>
 
     <div class="form-group">
         <label for="lastName">Last Name:</label>
-        <input type="text" class="form-control" id="usr" placeholder="Enter Last Name">
+        <input type="text" class="form-control" placeholder="Enter Last Name">
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" class="form-control" id="usr" placeholder="Enter Email">
+        <input type="email" class="form-control" placeholder="Enter Email">
     </div>
     <div class="form-group">
         <label for="birthday">Birthday</label>
-        <input type="date" class="form-control" id="usr" placeholder = "mm/dd/yyyy">
+        <input type="date" class="form-control" placeholder = "mm/dd/yyyy">
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="usr" placeholder="Enter Passeword">
+        <input type="password" class="form-control" placeholder="Enter Passeword">
     </div>
     <div class="form-group">
         <label for="cPassword">Confirm Password:</label>
-        <input type="password" class="form-control" id="usr" placeholder ="Confirm Password">
+        <input type="password" class="form-control" placeholder ="Confirm Password">
     </div>
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary"><a href="site.html"style="color:white">Submit</a></button>
+    <button type="submit" id = "register" class="btn btn-primary"><a href="site.html"style="color:white">Submit</a></button>
     <!-- Submit Button -->
 
   </form>
@@ -88,25 +76,23 @@
     <div class="w3-half w3-blue-grey w3-container w3-center" style="height:700px">
           <h1>Log In</h1>
           <!-- Log In -->
-  <form>
+  <form id="form-login">
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" class="form-control" id="usr" placeholder ="Enter Email">
+        <input type="email" class="form-control" placeholder ="Enter Email">
     </div>
-  <form action=""></form>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" class="form-control" id="usr" placeholder = "Enter Password">
+        <input type="password" class="form-control" placeholder = "Enter Password">
     </div>
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary"><a href="site.html" style="color:white">Submit</a></button>
+    <button type="submit" id="login" class="btn btn-primary"><a href="site.html" style="color:white">Submit</a></button>
     <!-- Submit Button -->
 
   </form>
         <!-- Log In -->
         </div>
       </div>
-    </div>
   </div>
 
 <!-- Footer -->
@@ -120,3 +106,62 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script src="js/requests.js"></script>
+<script>
+    reg_form_inp = document.querySelectorAll("#form-register input");
+
+    // Event Listeners
+    var registerButton = document.getElementById("register");
+    function submitRegister(e) {
+        console.log("clicked")
+        route = '/register'
+        params = {
+            first_name: reg_form_inp[0].value,
+            last_name: reg_form_inp[1].value,
+            email: reg_form_inp[2].value,
+            birthdate: reg_form_inp[3].value,
+            password: reg_form_inp[4].value,
+            confirm_password: reg_form_inp[5].value
+        };
+        postRequest(route, params, res => {
+            console.log(res);
+            if (res.success) {
+                document.cookie = 'token='+res.object.tokens[0].token+'; path=/;';
+                document.cookie = 'id='+res.object.id+'; path=/;';
+                window.location.assign('account.html');
+            }
+        });
+        // Add EventListeners
+      //reg_form.addEventListener('submit', submitRegister);
+    }
+    registerButton.addEventListener('click', submitRegister);
+
+
+    //lgn_form = document.getElementById('form-login');    // This is the login form
+    //lgn_form_inp = document.querySelectorAll('#form-login input')
+
+    // Event Listeners
+    /*
+    function submitLogin(e) {
+        e.preventDefault();
+        route = '/login';
+        params = {
+            email: lgn_form_inp[0].value,
+            password: lgn_form_inp[1].value
+        };
+        postRequest(route, params, res => {
+            if (res.success) {
+                document.cookie = 'token='+res.object.tokens[0].token+'; path=/';
+                document.cookie = 'id='+res.object.id+'; path=/';
+                window.location.assign('account.html')
+            }
+        });
+    }
+
+
+    // Add EventListeners
+    lgn_form.addEventListener('submit', submitLogin);
+*/
+    
+</script>
