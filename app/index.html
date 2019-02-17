@@ -73,56 +73,7 @@
   <script src="js/authorization.js"></script>
   <script src="js/components.js"></script>
   <script>
-    // Get DOM elements
-    reg_form = document.getElementById('form-register');
-    reg_btn = document.getElementById('register');
-    reg_inp = document.querySelectorAll('#form-register input');
-    console.log(reg_inp);
-
-    // Event Listeners
-    function register(e) {
-      e.preventDefault();
-      params = {
-        first_name: reg_inp[0].value,
-        last_name: reg_inp[1].value,
-        email: reg_inp[2].value,
-        birthdate: reg_inp[3].value,
-        password: reg_inp[4].value,
-        confirm_password: reg_inp[5].value
-      }
-      
-      postRequest('/register', params, res => {
-        console.log(res);    // TODO: fix this
-        if(res.success) {
-          console.log("Success")
-          document.cookie = 'token='+res.object.tokens[0].token+'; path=/;';
-          document.cookie = 'id='+res.object.id+'; path=/;';
-          window.location.assign('site.html')
-        }
-      })
-    }
-
-    // Add Event Listeners
-    reg_form.addEventListener('submit', register)
-    reg_btn.addEventListener('click', register)
-
-    log_form = document.getElementById('form-login');
-    log_btn = document.getElementById('login');
-    log_inp = document.querySelectorAll('#form-login input');
-
-    function login(e){
-        e.preventDefault()
-        params = {
-            email: log_inp[0].value,
-            password: log_inp[1].value
-        };
-        postRequest('/login',params,res => {
-            console.log(res)
-            if(res.success){
-              console.log("Success")
-              document.cookie = 'token=' + res.object.tokens[0].token+'; path=/';
-              document.cookie = 'id='+res.object.id+'; path=/';
-              window.location.assign('site.html')
+  
     function addCarouselItem(img_path, name, descr, index) {
         carousel_inner = document.getElementById('carousel-inner');
         carousel_ind = document.getElementById('carousel_indicator');
