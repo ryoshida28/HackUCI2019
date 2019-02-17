@@ -113,6 +113,7 @@
     }
 
     function addCategory(e) {
+      e.preventDefault()
         category = document.getElementById('category-add').value;
         li = document.createElement('li');
         li.appendChild(document.createTextNode(category));

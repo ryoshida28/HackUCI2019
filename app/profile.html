@@ -46,8 +46,7 @@
               <a class="list-group-item" id = "name"></a>
               <a class="list-group-item" id="birthday"></a>
               <a class="list-group-item" id="email"></a>
-              <div class="list-group">
-                <a class="list-group-item" id = "items"></a>
+              <div class="list-group" id = "items"> Items
               </div>
               
             </div>
@@ -83,7 +82,6 @@ function getUser(){
               name = account.first_name + " " + account.last_name;
               birthday = account.birthdate;
               email = account.email;
-              items = items.concat(account.items);
               name_ = document.getElementById('name');
               name_.appendChild(document.createTextNode(name))
               birthday_ = document.getElementById('birthday');
@@ -93,6 +91,15 @@ function getUser(){
 
               getRequest('/account/' + account.id + '/products', res => {
                 console.log(res)
+                item = document.getElementById("items")
+                for(i=0;i<res.length;i++){
+                  items = res[i]
+                  item_a = document.createElement('a')
+                  item_a.className = 'list-group-item'
+                  item_a.appendChild(document.createTextNode(items.name))
+                  item.appendChild(item_a)
+
+                };
               })
           } else {
             window.location.assign(index.html);
