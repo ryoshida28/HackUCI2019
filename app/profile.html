@@ -43,15 +43,11 @@
     <div class="just-padding">
 
             <div class="list-group list-group-root well">
-              <a class="list-group-item">Name</a>
-              <a class="list-group-item">Email</a>
+              <a class="list-group-item" id = "name"></a>
+              <a class="list-group-item" id="birthday"></a>
+              <a class="list-group-item" id="email"></a>
               <div class="list-group">
-                <a class="list-group-item">Items for sale</a>
-                <div class="list-group">
-                  <a class="list-group-item">Item 1</a>
-                  <a class="list-group-item">Item 2</a>
-                  <a class="list-group-item">Item 3</a>
-                </div>
+                <a class="list-group-item" id = "items"></a>
               </div>
               
             </div>
@@ -71,20 +67,40 @@
 
 
 
-function getUser(e){
-  e.preventDefault();
-  params = {
-  }
+function getUser(){
 
-  account = is_logged_in()
-  if(account === false) {
-    window.location.assign(index.html)
-  }
-  else{
-    
-  }
-}
+  var name = "";
+  var email = "";
+  var items = [];
+  var birthday = "";
 
+  cookies = parse_cookies(document.cookie);
+  if (cookies.hasOwnProperty('token')) {
+      postRequest('/account', cookies, res=> {
+          if (res.success) {
+              account = res.object;
+              console.log(account); 
+              name = account.first_name + " " + account.last_name;
+              birthday = account.birthdate;
+              email = account.email;
+              items = items.concat(account.items);
+              name_ = document.getElementById('name');
+              name_.appendChild(document.createTextNode(name))
+              birthday_ = document.getElementById('birthday');
+              birthday_.appendChild(document.createTextNode(birthday))
+              email_ = document.getElementById('email');
+              email_.appendChild(document.createTextNode(email))
+
+              getRequest('/account/' + account.id + '/products', res => {
+                console.log(res)
+              })
+          } else {
+            window.location.assign(index.html);
+          }
+      });
+    }
+  }
+getUser()
 build_navbar();
 
 </script>
