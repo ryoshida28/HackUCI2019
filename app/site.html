@@ -13,33 +13,20 @@
   <body>
     <!-- NavBar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">bargainswipes</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="site.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="profile.html">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post_item.html">Sell</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="sign-out" href="#">Sign Out</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+      <a class="navbar-brand" href="index.html">bargainswipes</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" id="nav-items"></ul>
+        <ul class="navbar-nav ml-auto" id="acct-ctr" style="margin-right: 10px;"></ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+  </nav>
       <div class="row">
           <div class="col-sm-4">
             <div class="card" style="width: 18rem;">
@@ -61,53 +48,16 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
 
 <script src="js/requests.js"></script>
+<script src="js/authorization.js"></script>
+<script src="js/components.js"></script>
 <script>
     // Get DOM items
-    lgn_form = document.getElementById('form-tag');    // This is the login form
-    lgn_form_inp = document.querySelectorAll('#form-tag input');
-    sign_out_btn = document.getElementById('sign-out');
-
-    // Event Listeners
-    function submitLogin(e) {
-        e.preventDefault();
-        route = '/login';
-        params = {
-            email: lgn_form_inp[0].value,
-            password: lgn_form_inp[1].value
-        };
-        postRequest(route, params, res => {
-            if (res.success) {
-                document.cookie = 'token='+res.object.tokens[0].token+'; path=/';
-                document.cookie = 'id='+res.object.id+'; path=/';
-                window.location.assign('account.html')
-            }
-        });
-    }
-
-    function logout(e) {
-      e.preventDefault();
-
-      cookies = parse_cookies(document.cookie);
-      postRequest('/logout', cookies, res => {
-          if (res.success) {
-              document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-              document.cookie = 'id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-              console.log(parse_cookies(document.cookie))
-              window.location.assign('login.html')
-          }
-      });
-    }
     
-    // Add EventListeners
-    lgn_form.addEventListener('submit', submitLogin);
-    sign_out_btn.addEventListener('click', logout);
-    
+    build_navbar();
 
 </script>

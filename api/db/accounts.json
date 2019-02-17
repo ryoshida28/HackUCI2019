@@ -1,7 +1,1 @@
-{
-    "accounts": [
-    ],
-    "authorization": [
-    ],
-    "last_insert_id": 0
-}
+{"accounts": [{"id": 1, "first_name": "Jason", "last_name": "Zhu", "email": "jzhu684@gmail.com", "birthdate": "2019-02-05", "date_created": "2019-02-17 14:00:50.065531", "tokens": [{"token": "fO9mJ7f0EQDI2cX1nrrTBhMH3BO0W7aA", "expires": "2019-02-17 15:00:50.065558"}]}, {"id": 2, "first_name": "Jason", "last_name": "Zhu", "email": "jzh684@gmail.com", "birthdate": "2019-02-06", "date_created": "2019-02-17 14:02:29.483260", "tokens": [{"token": "+FXJrdzeajoQiPYDe9FZuMWSN30BaXPg", "expires": "2019-02-17 15:07:19.837318"}]}], "authorization": [{"id": 1, "email": "jzhu684@gmail.com", "password": "$5$rounds=535000$pBZBq9D3cU3hNVsa$Y1N0cUiUu2ro0eQDJSeUJik1e4w4c.LNu1TlK8xCfQ3"}, {"id": 2, "email": "jzh684@gmail.com", "password": "$5$rounds=535000$wV.njXlzXQxc0DC8$8wcokPkbSf.gXvbPfRpS2BQaf2dvmuwwnqBHyCL95w6"}], "last_insert_id": 2}
