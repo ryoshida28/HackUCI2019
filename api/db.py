@@ -116,5 +116,28 @@ def removeToken(id, token):
 
     return found_token
 
-def uploadFile(f, product):
-    pass
+def uploadFile(f, product, img_id):
+    filepath = os.path.join('db','images',str(product.account_id), str(product.id))
+    if not os.path.isdir(filepath):
+        os.mkdir(filepath)
+    
+    print(f.mimetype)
+    imgpath = os.path.join(filepath, 'img-'+ str(img_id) + '.' + f.mimetype.split('/')[1])
+    f.save(imgpath)
+    return imgpath
+
+def createProduct(product):
+    db = None
+    with open(os.path.join('db', 'products.json'), 'r') as fp:
+        db = json.load(fp)
+    
+    if db == None:
+        return False
+    else:
+        product.id = db['last_insert_id'] + 1
+        db['last_insert_id'] = product.id
+        db['products'].append(product.getDict())
+        with open(os.path.join('db', 'products.json'), 'w') as fp:
+            json.dump(db, fp)
+
+        return True

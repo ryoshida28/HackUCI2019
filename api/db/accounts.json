@@ -1,1 +1,59 @@
-{"accounts": [{"id": 1, "first_name": "Test", "last_name": "test", "email": "test@test.com", "birthdate": "2019-02-04", "date_created": "2019-02-16 18:04:22.961690", "tokens": [{"token": "HJ8wKFSRKMPUhzyELvNlWFOOY136Xidt", "expires": "2019-02-16 20:45:56.446730"}]}, {"id": 2, "first_name": "Test", "last_name": "test", "email": "test@test.co", "birthdate": "2019-02-04", "date_created": "2019-02-16 18:05:44.005188", "tokens": []}, {"id": 3, "first_name": "Ryan", "last_name": "Yoshida", "email": "ryan.yoshida@comcast.net", "birthdate": "2000-04-07", "date_created": "2019-02-17 00:04:19.076439", "tokens": [{"token": "rjrKTATVK7mZVilaza98nrcB806jQAHo", "expires": "2019-02-17 01:04:19.076439"}]}, {"id": 4, "first_name": "123", "last_name": "123", "email": "123@f.com", "birthdate": "", "date_created": "2019-02-17 00:46:06.111565", "tokens": [{"token": "FhLxMja+vNFWkX5Tua7gx9kmKRsDTBpc", "expires": "2019-02-17 01:46:06.111603"}]}, {"id": 5, "first_name": "1234", "last_name": "1234", "email": "jzhu684@gmail.com", "birthdate": "2019-02-08", "date_created": "2019-02-17 00:46:49.066185", "tokens": [{"token": "PjImUsl6qQ+lDWH9LlL+rF8dNXV33lBJ", "expires": "2019-02-17 01:46:49.066203"}]}], "authorization": [{"id": 1, "email": "test@test.com", "password": "$5$rounds=535000$DI2cW3/Z6jis5zl8$sFBeZUT8auv.uBNhxjlr7kJAEKMhjkjUly./rWrvS64"}, {"id": 2, "email": "test@test.co", "password": "$5$rounds=535000$4pNTDR1tC6.NbASj$98aLSIM5KSVJNnPPMTxDFdJ5CwY3O7v.QqNwITtLQy9"}, {"id": 3, "email": "ryan.yoshida@comcast.net", "password": "$5$rounds=535000$DXH39UACkwx1WL1m$Z2PgVmgrrSLZzoKrIwZ0bQ9d60iSoI5wSaD7jkWW/C9"}, {"id": 4, "email": "123@f.com", "password": "$5$rounds=535000$psM74wER0c7cHt46$gn5LtgIUlSUwetsUmApEtSyPVOTBHT5EwT1WnEghz98"}, {"id": 5, "email": "jzhu684@gmail.com", "password": "$5$rounds=535000$n8Yhwe0bX5Pc2HhW$d8jSXCF2VPg09ZX48anDOB.7Y0LU/6OaY1ARq8ly3l3"}], "last_insert_id": 5}
+{
+    "accounts": [
+        {
+            "id": 1,
+            "first_name": "Test",
+            "last_name": "test",
+            "email": "test@test.com",
+            "birthdate": "2019-02-04",
+            "date_created": "2019-02-16 18:04:22.961690",
+            "tokens": [
+                {
+                    "token": "HJ8wKFSRKMPUhzyELvNlWFOOY136Xidt",
+                    "expires": "2019-02-16 20:45:56.446730"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "first_name": "Test",
+            "last_name": "test",
+            "email": "test@test.co",
+            "birthdate": "2019-02-04",
+            "date_created": "2019-02-16 18:05:44.005188",
+            "tokens": []
+        },
+        {
+            "id": 3,
+            "first_name": "Ryan",
+            "last_name": "Yoshida",
+            "email": "ryan.yoshida@comcast.net",
+            "birthdate": "2000-04-07",
+            "date_created": "2019-02-17 00:04:19.076439",
+            "tokens": [
+                {
+                    "token": "rjrKTATVK7mZVilaza98nrcB806jQAHo",
+                    "expires": "2019-02-17 01:04:19.076439"
+                }
+            ]
+        }
+    ],
+    "authorization": [
+        {
+            "id": 1,
+            "email": "test@test.com",
+            "password": "$5$rounds=535000$DI2cW3/Z6jis5zl8$sFBeZUT8auv.uBNhxjlr7kJAEKMhjkjUly./rWrvS64"
+        },
+        {
+            "id": 2,
+            "email": "test@test.co",
+            "password": "$5$rounds=535000$4pNTDR1tC6.NbASj$98aLSIM5KSVJNnPPMTxDFdJ5CwY3O7v.QqNwITtLQy9"
+        },
+        {
+            "id": 3,
+            "email": "ryan.yoshida@comcast.net",
+            "password": "$5$rounds=535000$DXH39UACkwx1WL1m$Z2PgVmgrrSLZzoKrIwZ0bQ9d60iSoI5wSaD7jkWW/C9"
+        }
+    ],
+    "last_insert_id": 3
+}

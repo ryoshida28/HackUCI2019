@@ -26,8 +26,10 @@ api.add_resource(Logout, '/logout')
 @app.route('/post_item', methods=['POST'])
 def post_item():
     if request.method == 'POST':
+        
         res = Response()
-        data = request.data
+        data = request.form
+        print(request.form)
         account_id = int(data['account_id'])
         token = data['token']
 
@@ -39,14 +41,22 @@ def post_item():
             return res.getResponse()
         
         # Get Product
-        prod = Product(0, acct.id, data['name'], data['description'], data['min_price'], data['max_price'], data['categories'], None)
+        prod = Product(0, acct.id, data['name'], data['description'], data['min_price'], data['max_price'], data['categories'], [])
 
         os.path.isdir("/db/images/{account_id}")
-        for _, f in request.files:
-            db.uploadFile(f,)
-        r = request.files['images']
-        print(r)
-        return jsonify({'heool': str(r)})
+        id = 0
+        for f in dict(request.files):
+            filename = db.uploadFile(request.files[f],prod,id)
+            prod.addImage(filename)
+            id += 1
+        
+        # Save Product
+        if db.createProduct(prod):
+            res.setResponseObj(prod)
+        else:
+            res.setSuccess(False)
+
+        return res.getResponse()
 
 if __name__ == '__main__':
     app.run(debug=True)
